@@ -1,0 +1,83 @@
+
+--1.	Select CategoryName and Description from the Categories table sorted by CategoryName. 
+select categoryName , description 
+from categories
+ORDER BY categoryName;
+
+
+--2.	Select ContactName, CompanyName, ContactTitle, and Phone from the Customers table sorted by Phone. 
+select contactName, companyName, ContactTitle, Phone 
+from customers
+order by Phone;
+
+
+--3.	Create a report showing employees' first and last names and hire dates sorted from newest to oldest employee. 
+select firstName, LastName, hiredate 
+from employees
+order by hiredate desc;
+
+
+
+--4.	Create a report showing Northwind's orders sorted by Freight from most expensive to cheapest. Show OrderID, OrderDate, ShippedDate, CustomerID, and Freight. 
+select orderid,orderdate,shippeddate,customerid,freight
+from orders
+order by FREIGHT desc;
+
+
+--5.	Select CompanyName, Fax, Phone, HomePage and Country from the Suppliers table sorted by Country in descending order and then by CompanyName in ascending order. 
+select companyName, Fax, Phone, HomePage, Country
+from suppliers
+order by country desc, companyname asc;
+
+
+
+--6.	Create a report showing the title and the first and last name of all sales representatives.
+select title, firstname || ' ' || lastname as name
+from employees
+where title = initcap('sales representative');
+
+
+--7.	Create a report showing the first and last name of all employees excluding sales representatives.
+select firstname, lastname 
+from employees
+where title <> 'Sales Representative';
+
+
+--8.	Create a report showing all the company names and contact names of Northwind's customers in Buenos Aires. 
+select companyname, contactname 
+from CUSTOMERS
+where city = 'Buenos Aires';
+
+
+--9.	Create a report showing the product name, unit price and quantity per unit of all products that are out of stock. 
+select productname, unitprice , quantityperunit
+from products
+where unitsinstock = 0;
+
+
+--10.	Create a report showing the order date, shipped date, customer id, and freight of all orders placed on May 19, 1997.
+select orderdate, shippeddate, customerid, FREIGHT
+from orders
+where orderdate = '19-05-1997';
+
+
+--11.	Create a report showing the first name, last name, and country of all employees not in the United States. 
+SELECT FirstName, LastName, Country
+from employees
+where country = 'USA';
+
+
+--12.	Create a report showing the title of courtesy and the first and last name of all employees whose title of courtesy is "Mrs." or "Ms.". 
+SELECT TITLEOFCOURTESY, firstname, lastname
+from employees
+where TITLEOFCOURTESY IN ( 'Mrs.','Ms.');
+
+
+--13.	Create a report showing the title of courtesy and the first and last name of all employees whose title of courtesy begins with "M". 
+SELECT TITLEOFCOURTESY, firstname, lastname
+from employees
+where TITLEOFCOURTESY LIKE 'M%';
+
+--14.	Select the full name of all employees. (using concatenation operator)
+SELECT Firstname || ' ' || lastname as Full_Name
+from employees;
