@@ -1,0 +1,30 @@
+--1.	Select freight as is and freight rounded to the first decimal (e.g, 1.150 becomes 1.2) from the Orders tables
+select freight, 'becomes' ,ROUND(Freight,1)
+from orders;
+
+
+--2.	Display employee id, employee name, birthdate, city for all the employees. Display employee name as combination of TitleOFCourtesy and Firstname 
+select employeeid, Titleofcourtesy || ' ' ||FirstName as EmployeeName, birthdate, city
+from employees;
+
+
+--3.	Display all employee details along with phone number. Phone number should be displayed without Country code.( Country code is mentioned in bracket (71)  )
+select employeeid, TITLEOFCOURTESY, FIRSTNAME, LASTNAME, SUBSTR(HOMEPHONE,INSTR(Homephone,')',1,1)+1) as HOMEPHONE, TITLE, HIREDATE, BIRTHDATE, ADDRESS, CITY, REGION, POSTALCODE, COUNTRY, EXTENSION, PHOTO, NOTES, REPORTSTO, PHOTOPATH,SALARY 
+from employees;
+
+--4.	Display customer’s id , company name, address, city and region.Any column should not display null values in the report. Display some proper alternative value in place of null.
+select NVL(customerid,1000), NVL(companyname,'PSL'), NVL(address,'MH'), NVL(city,'PUNE'), NVL(region,'HJ')
+from customers;
+
+--5.	Display Joining date along with probation period end date for each employee. Assume probation period is for 3 mnths )
+select EMPLOYEEID, hiredate as JOINING_DATE, add_months(hiredate,3) as PROBATION_PERIOD
+from employee;
+
+--6.	Find the tenure of each employee in the company
+select EMPLOYEEID, TRUNC(months_between(sysdate,hiredate)/12) as TENURE_IN_YEARS
+from employees;
+
+
+--7.	Display employeeid, full name of a employee in upper case, job title in Lower case for all the employees
+select EMPLOYEEID, upper(FirstName || ' ' || LastName) as FULL_NAME , lower(TITLE) as JOB_TITLE
+from employees;
